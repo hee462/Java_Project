@@ -54,7 +54,6 @@ public class CardService {
 			}
 		}
 	}
-	
 	// player 유저와 딜러 구분하기 위한 변수
 	public void addCard(String player) {
 		tempCardList = new ArrayList<>();
@@ -75,6 +74,16 @@ public class CardService {
 
 		cList.remove(rNum);
 	}
+	
+	public List<CardDto> getDealCardList() {
+		return dCardList;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	// test
@@ -115,5 +124,7 @@ public class CardService {
 		System.out.println();
 	}
 
+	
+	
 
 }
