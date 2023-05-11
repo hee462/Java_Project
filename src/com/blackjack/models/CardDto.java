@@ -2,7 +2,7 @@ package com.blackjack.models;
 
 public class CardDto {
     private String pattern;
-    private String denomination;
+    private String dNum;
     
     public CardDto() {
     	super();
@@ -11,7 +11,7 @@ public class CardDto {
     public CardDto(String pattern, String denomination) {
     	super();
     	this.pattern = pattern;
-    	this.denomination = denomination;
+    	this.dNum = dNum;
     	
     }
     
@@ -22,14 +22,14 @@ public class CardDto {
 		this.pattern = pattern;
 	}
 	public String getDenomination() {
-		return denomination;
+		return dNum;
 	}
-	public void setDenomination(String denomination) {
-		this.denomination = denomination;
+	public void setDenomination(String dNum) {
+		this.dNum = dNum;
 	}
 	@Override
 	public String toString() {
-		return "CardDto [pattern=" + pattern + ", denomination=" + denomination + "]";
+		return "CardDto [pattern=" + pattern + ", dNum=" + dNum + "]";
 	}
     
     

@@ -12,7 +12,7 @@ public class Main {
 		cService.CreateCard();
 		String text = "";
 		while(true) {
-			cService.printCard();
+			cService.addCard("deal");
 			System.out.println("카드를 뽑으시겠습니까? (뽑는다/안뽑는다)");
 			System.out.print(">>>");
 			text = scan.nextLine();

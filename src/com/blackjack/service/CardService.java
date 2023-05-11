@@ -12,6 +12,8 @@ public class CardService {
 	private List<CardDto> dCardList;
 	// 사용자 카드
 	private List<CardDto> uCardList;
+	// 임시 카드 저장소
+	private List<CardDto> tempCardList;
 	
 	private int rNum = 0;
 	
@@ -52,13 +54,30 @@ public class CardService {
 			}
 		}
 	}
+	// player 유저와 딜러 구분하기 위한 변수
+	public void addCard(String player) {
+		tempCardList = new ArrayList<>();
+		// 카드뭉치에서 랜덤하게 한장 뽑기
+		rNum = (int)(Math.random()*cList.size());
+		// 임시 카드뭉치에 뽑힌 한장을 담기
+		tempCardList.add(cList.get(rNum));
+		
+		if(player.equals("deal")) {
+			
+		}
+
+		player.equals("user");
+		;
+		
+	}
 	
 	
 	// test
-	public void printCard() {
-		rNum = (int)(Math.random()*cList.size());
-		System.out.println(rNum);
-		dCardList.add(cList.get(rNum));
+//	public void printCard() {
+//		
+//		rNum = (int)(Math.random()*cList.size());
+//		System.out.println(rNum);
+//		dCardList.add(cList.get(rNum));
 //		
 //		System.out.println(cList.size());
 //		for(int i = 0; i<dCardList.size(); i++) {
@@ -76,18 +95,8 @@ public class CardService {
 //		for(int i = 0; i<dCardList.size(); i++) {
 //			System.out.print("└────┘ ");
 //		}
-		cList.remove(rNum);
-		
-		for(CardDto dto : cList) {
-			System.out.println(dto.getPattern() + " : " + dto.getDenomination());
-		}
-		
-		for(CardDto dto : dCardList) {
-			System.out.println("딜러카드");
-			System.out.println(dto.getPattern() + " : " + dto.getDenomination());
-		}
-		
-	}
+//		cList.remove(rNum);
+//	}
 
 
 }
