@@ -76,6 +76,20 @@ public class CardService {
       cList.remove(rNum);
    }
    
+   public List<CardDto> getDealList(){
+	   return dCardList;
+   }
+   
+   public List<CardDto> getUserList(){
+	   return uCardList;
+   }
+   
+   
+   
+   
+   
+   
+   
    
    // test
    public void printCard() {
