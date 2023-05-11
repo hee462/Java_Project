@@ -19,5 +19,12 @@ public class RuleService {
 		
 		cService.printCard();
 	}
+	
+	
+	public void hitCard() {
+		
+		
+		
+	}
 
 }
