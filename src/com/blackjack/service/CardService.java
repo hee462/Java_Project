@@ -42,18 +42,19 @@ public class CardService {
 				CardDto cDto = new CardDto();
 				cDto.setPattern(pattern);
 				if(i+1 == 11) {
-					cDto.setDenomination("J");
+					cDto.setDNum("J");
 				}else if(i+1 == 12){
-					cDto.setDenomination("Q");
+					cDto.setDNum("Q");
 				}else if(i+1 == 13){
-					cDto.setDenomination("K");
+					cDto.setDNum("K");
 				}else {
-					cDto.setDenomination((i+1)+"");
+					cDto.setDNum((i+1)+"");
 				}
 				cList.add(cDto);
 			}
 		}
 	}
+	
 	// player 유저와 딜러 구분하기 위한 변수
 	public void addCard(String player) {
 		tempCardList = new ArrayList<>();
@@ -62,41 +63,57 @@ public class CardService {
 		// 임시 카드뭉치에 뽑힌 한장을 담기
 		tempCardList.add(cList.get(rNum));
 		
+		// player에 따라 player패에 카드 추가
 		if(player.equals("deal")) {
-			
+			dCardList.add(tempCardList.get(0));
+		}else if(player.equals("user")) {
+			uCardList.add(tempCardList.get(0));
+		}else {
+			// 딜러도 유저도 아닌 player가 들어올 경우
+			System.err.println("ERROR");
 		}
 
-		player.equals("user");
-		;
-		
+		cList.remove(rNum);
 	}
 	
 	
 	// test
-//	public void printCard() {
-//		
-//		rNum = (int)(Math.random()*cList.size());
-//		System.out.println(rNum);
-//		dCardList.add(cList.get(rNum));
-//		
-//		System.out.println(cList.size());
-//		for(int i = 0; i<dCardList.size(); i++) {
-//			System.out.print("┌────┐ ");
-//		}
-//		System.out.println();
-//		for(int i = 0; i<dCardList.size(); i++) {
-//			System.out.printf ("│ %1s  │ ",dCardList.get(i).getPattern());
-//		}
-//		System.out.println();
-//		for(int i = 0; i<dCardList.size(); i++) {
-//			System.out.printf ("│ %2s │ ",dCardList.get(i).getDenomination());
-//		}
-//		System.out.println();
-//		for(int i = 0; i<dCardList.size(); i++) {
-//			System.out.print("└────┘ ");
-//		}
-//		cList.remove(rNum);
-//	}
+	public void printCard() {
+		System.out.println("-------딜러카드-------");
+		for(int i = 0; i<dCardList.size(); i++) {
+			System.out.print("┌────┐ ");
+		}
+		System.out.println();
+		for(int i = 0; i<dCardList.size(); i++) {
+			System.out.printf ("│ %1s  │ ",dCardList.get(i).getPattern());
+		}
+		System.out.println();
+		for(int i = 0; i<dCardList.size(); i++) {
+			System.out.printf ("│ %2s │ ",dCardList.get(i).getDNum());
+		}
+		System.out.println();
+		for(int i = 0; i<dCardList.size(); i++) {
+			System.out.print("└────┘ ");
+		}
+		System.out.println();
+		System.out.println("-------유저카드-------");
+		for(int i = 0; i<uCardList.size(); i++) {
+			System.out.print("┌────┐ ");
+		}
+		System.out.println();
+		for(int i = 0; i<uCardList.size(); i++) {
+			System.out.printf ("│ %1s  │ ",uCardList.get(i).getPattern());
+		}
+		System.out.println();
+		for(int i = 0; i<uCardList.size(); i++) {
+			System.out.printf ("│ %2s │ ",uCardList.get(i).getDNum());
+		}
+		System.out.println();
+		for(int i = 0; i<uCardList.size(); i++) {
+			System.out.print("└────┘ ");
+		}
+		System.out.println();
+	}
 
 
 }

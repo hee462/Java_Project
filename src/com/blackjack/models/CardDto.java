@@ -21,10 +21,10 @@ public class CardDto {
 	public void setPattern(String pattern) {
 		this.pattern = pattern;
 	}
-	public String getDenomination() {
+	public String getDNum() {
 		return dNum;
 	}
-	public void setDenomination(String dNum) {
+	public void setDNum(String dNum) {
 		this.dNum = dNum;
 	}
 	@Override
