@@ -16,6 +16,10 @@ public class CardService {
    private List<CardDto> tempCardList;
    
    private int rNum = 0;
+   // 딜러 카드 합계
+   private int dSum = 0;
+   // 유저 카드 합계
+   private int uSum = 0;
    
    public CardService(){
       cList = new ArrayList<>();
@@ -75,16 +79,45 @@ public class CardService {
 
       cList.remove(rNum);
    }
-   
+   // 딜러카드 리스트 가져오기
    public List<CardDto> getDealList(){
 	   return dCardList;
    }
-   
+   // 유저카드 리스트 가져오기   
    public List<CardDto> getUserList(){
 	   return uCardList;
    }
    
-   
+   //카드 합계 계산
+   public void score() {
+	   dSum = 0;
+	   for(int i = 0; i< dCardList.size(); i++) {
+			String cNum = dCardList.get(i).getDNum();
+			if(cNum.equals("K")) {
+				dSum += 10;
+			}else if(cNum.equals("Q")) {
+				dSum += 10;
+			}else if(cNum.equals("J")) {
+				dSum += 10;
+			}else {
+				dSum += Integer.valueOf(dCardList.get(i).getDNum());
+			}
+	   }
+	   
+	   uSum = 0;
+	   for(int i = 0; i< uCardList.size(); i++) {
+			String cNum = uCardList.get(i).getDNum();
+			if(cNum.equals("K")) {
+				uSum += 10;
+			}else if(cNum.equals("Q")) {
+				uSum += 10;
+			}else if(cNum.equals("J")) {
+				uSum += 10;
+			}else {
+				uSum += Integer.valueOf(uCardList.get(i).getDNum());
+			}
+	   }
+   }
    
    
    
@@ -93,13 +126,21 @@ public class CardService {
    
    // test
    public void printCard() {
-      System.out.println("-------딜러카드-------");
+	  score();
+      System.out.printf("-------딜러 %d 점-------\n",dSum);
       for(int i = 0; i<dCardList.size(); i++) {
          System.out.print("┌────┐ ");
       }
       System.out.println();
       for(int i = 0; i<dCardList.size(); i++) {
-         System.out.printf ("│ %1s  │ ",dCardList.get(i).getPattern());
+//    	  if(dCardList.get(i).getPattern().equals("♡") || dCardList.get(i).getPattern().equals("◇")) {
+//    		  System.out.print ("│ ");
+//    		  System.err.printf("%1s",dCardList.get(i).getPattern());
+//    		  System.out.print ("  │ ");
+//    	  }else {
+//    	      System.out.printf ("│ %1s  │ ",dCardList.get(i).getPattern());
+//    	  }
+    	  System.out.printf ("│ %1s  │ ",dCardList.get(i).getPattern());
       }
       System.out.println();
       for(int i = 0; i<dCardList.size(); i++) {
@@ -110,12 +151,20 @@ public class CardService {
          System.out.print("└────┘ ");
       }
       System.out.println();
-      System.out.println("-------유저카드-------");
+//      System.out.println("-------유저카드-------");
+      System.out.printf("-------유저 %d 점-------\n",uSum);
       for(int i = 0; i<uCardList.size(); i++) {
          System.out.print("┌────┐ ");
       }
       System.out.println();
       for(int i = 0; i<uCardList.size(); i++) {
+//    	  if(uCardList.get(i).getPattern().equals("♡") || uCardList.get(i).getPattern().equals("◇")) {
+//    		  System.out.print ("│ ");
+//    		  System.err.printf("%1s",uCardList.get(i).getPattern());
+//    		  System.out.print ("  │ ");
+//    	  }else {
+//    	      System.out.printf ("│ %1s  │ ",uCardList.get(i).getPattern());
+//    	  }
          System.out.printf ("│ %1s  │ ",uCardList.get(i).getPattern());
       }
       System.out.println();
@@ -129,6 +178,7 @@ public class CardService {
       System.out.println();
    }
 
+   
 	
 	
 
