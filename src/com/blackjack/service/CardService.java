@@ -28,6 +28,8 @@ public class CardService {
    }
    
    public void CreateCard() {
+      dCardList = new ArrayList<>();
+      uCardList = new ArrayList<>();
       String pattern = "♠";
       // 카드뭉치 생성
       for(int pNum = 0; pNum< 4; pNum++) {
@@ -133,13 +135,6 @@ public class CardService {
       }
       System.out.println();
       for(int i = 0; i<dCardList.size(); i++) {
-//    	  if(dCardList.get(i).getPattern().equals("♡") || dCardList.get(i).getPattern().equals("◇")) {
-//    		  System.out.print ("│ ");
-//    		  System.err.printf("%1s",dCardList.get(i).getPattern());
-//    		  System.out.print ("  │ ");
-//    	  }else {
-//    	      System.out.printf ("│ %1s  │ ",dCardList.get(i).getPattern());
-//    	  }
     	  System.out.printf ("│ %1s  │ ",dCardList.get(i).getPattern());
       }
       System.out.println();
@@ -151,20 +146,12 @@ public class CardService {
          System.out.print("└────┘ ");
       }
       System.out.println();
-//      System.out.println("-------유저카드-------");
       System.out.printf("-------유저 %d 점-------\n",uSum);
       for(int i = 0; i<uCardList.size(); i++) {
          System.out.print("┌────┐ ");
       }
       System.out.println();
       for(int i = 0; i<uCardList.size(); i++) {
-//    	  if(uCardList.get(i).getPattern().equals("♡") || uCardList.get(i).getPattern().equals("◇")) {
-//    		  System.out.print ("│ ");
-//    		  System.err.printf("%1s",uCardList.get(i).getPattern());
-//    		  System.out.print ("  │ ");
-//    	  }else {
-//    	      System.out.printf ("│ %1s  │ ",uCardList.get(i).getPattern());
-//    	  }
          System.out.printf ("│ %1s  │ ",uCardList.get(i).getPattern());
       }
       System.out.println();

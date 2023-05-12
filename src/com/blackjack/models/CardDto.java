@@ -8,7 +8,7 @@ public class CardDto {
     	super();
     }
     
-    public CardDto(String pattern, String denomination) {
+    public CardDto(String pattern, String dNum) {
     	super();
     	this.pattern = pattern;
     	this.dNum = dNum;

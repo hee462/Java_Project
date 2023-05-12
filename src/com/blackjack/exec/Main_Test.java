@@ -1,5 +1,6 @@
 package com.blackjack.exec;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.blackjack.service.CardService;
@@ -9,12 +10,25 @@ public class Main_Test {
 	public static void main(String[] args) {
 		CardService cService = new CardService();
 		RuleService_test rService = new RuleService_test();
-		Scanner scan = new Scanner(System.in);
-		boolean flag = true;
-
-		flag = rService.stratGame();
-		while(flag) {
-			flag = rService.hitCard();
+		Scanner scan 	= new Scanner(System.in);
+		boolean flag  	   = true; // 게임 플레그
+		
+		while(true) {
+			flag = rService.stratGame();
+			while(flag) {
+				rService.dealTurn();
+				rService.userTurn();
+				flag = rService.socreCompare();
+			}
+			System.out.println("새 게임을 하시겠습니까? (Y/N)");
+			System.out.print(">>>");
+			String text = scan.nextLine();
+			if(text.equals("Y")) {
+				flag = true;
+				continue;
+			}else {
+				return;
+			}
 		}
 		
 //		String text = "";

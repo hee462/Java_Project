@@ -13,6 +13,8 @@ public class RuleService_test {
     private int dSum = 0;
     private int uSum = 0;
     private boolean flag;
+    private boolean dTurnFlag;
+    private boolean uTurnFlag;
 	   
 
 	public RuleService_test() {
@@ -20,55 +22,115 @@ public class RuleService_test {
 		cService = new CardService();
 		dCardList = new ArrayList<>();
 		uCardList = new ArrayList<>();
+		dTurnFlag = true; // 딜러 턴 플레그
+		uTurnFlag = true; // 유저 턴 플레그
 	}
 
+	//게임 시작할때 1회 실행
 	public boolean stratGame() {
+		flag = true;
+		dTurnFlag = true;
+		uTurnFlag = true;
+		
 		cService.CreateCard();
 		for( int i =0 ; i < 2 ; i++) {
 			cService.addCard("deal");
 			cService.addCard("user");
 		}
 		score();
-		if(dSum < 17){
-			cService.addCard("deal");
-		}
+		newPage();
 		cService.printCard();
-		socreCompare();
 		return flag;
 	}
 	
-	public boolean hitCard() {
-		Scanner scan = new Scanner(System.in);
-		if(dCardList.size() == uCardList.size() && dCardList.size() > 2) {
+	public void dealTurn() {
+		if(dTurnFlag) {
+			
 			if(dSum < 17){
 				cService.addCard("deal");
-			}
-			cService.printCard();
-			socreCompare();
-		}
-		
-		System.out.println("카드를 뽑으시겠습니까? (Y/N)");
-		System.out.print(">>>");
-		String str = scan.nextLine();
-		if(str.equals("Y")) {
-			cService.addCard("user");
-		}else if(str.equals("N")){
-			flag = false;
-			if(dSum > uSum) {
-				System.out.println("딜러 승리!");
-				return flag;
-			}else if(dSum < uSum) {
-				System.out.println("유저 승리!");
-				return flag;
+				newPage();
+				cService.printCard();
 			}else {
-				System.out.println("무승부!");
-				return flag;
+				dTurnFlag = false;
 			}
+			socreOver();
+			
 		}
-		cService.printCard();
-		socreCompare();
-		return flag;
 	}
+	public void userTurn() {
+		if(uTurnFlag) {
+			
+			Scanner scan = new Scanner(System.in);
+			//유저 차례 진행
+			System.out.println("카드를 뽑으시겠습니까? (Y/N)");
+			System.out.print(">>>");
+			String str = scan.nextLine();
+			if(str.equals("Y")) {
+				// 뽑는다 선택시 유저카드 한장 추가
+				cService.addCard("user");
+				newPage();
+				cService.printCard();
+			}else {
+				newPage();
+				uTurnFlag = false;
+			}
+			socreOver();
+			
+		}
+	}
+	
+	public void newPage() {
+		for(int i = 0; i<10; i++) {
+			System.out.println();
+		}
+	}
+	
+	
+//	//게임이 끝날때까지 반복
+//	public boolean hitCard() {
+//		Scanner scan = new Scanner(System.in);
+//		//딜러 점수가 16이하일 경우 한장 추가
+//		if(dSum < 17){
+//			cService.addCard("deal");
+//		}
+//		// 점수가 21점이거나 넘어갔는지 체크
+//		if(!socreOver()) {
+//			// 21점이거나 넘어갔을경우 게임 끝
+//			return flag;
+//		}
+//		cService.printCard();
+//		
+//		
+//		//유저 차례 진행
+//		System.out.println("카드를 뽑으시겠습니까? (Y/N)");
+//		System.out.print(">>>");
+//		String str = scan.nextLine();
+//		if(str.equals("Y")) {
+//			// 뽑는다 선택시 유저카드 한장 추가
+//			cService.addCard("user");
+//		}else if(str.equals("N")){
+//			// 안뽑는다 선택시 딜러 점수따라 카드 추가 후 진행
+//			while(true){
+//				if(dSum < 17){
+//					cService.addCard("deal");
+//				}else {
+//					break;
+//				}
+//			}
+//			if(dSum > 21) {
+//				socreOver();
+//			}
+//			// 딜러와 유저 점수 비교
+//			socreCompare();
+//			return flag;
+//		}
+//		// 딜러와 유저 점수 비교
+//		socreOver();
+//		return flag;
+//	}
+	
+	
+	
 	
 	
 	//카드 합계 계산
@@ -101,53 +163,51 @@ public class RuleService_test {
 				uSum += Integer.valueOf(uCardList.get(i).getDNum());
 			}
 	   }
-   }
+    }
 	   
-	public void socreCompare() {
+	public boolean socreOver() {
 		score();
 		if(dSum == 21) {
 			System.out.println("딜러 승리!");
 			flag = false;
-			return;
 		}else if(dSum > 21) {
 			System.out.println("유저 승리!");
 			flag = false;
-			return;
+		}else {
+			flag = true;
 		}
 		
 		if(uSum == 21) {
 			System.out.println("유저 승리!");
 			flag = false;
-			return;
 		}else if(uSum > 21) {
 			System.out.println("딜러 승리!");
 			flag = false;
-			return;
+		}else {
+			flag = true;
 		}
+		
+		return flag;
 	}
 	
-//	dealHitCard()
-//	public void dealhitCard() {		
-//		dCardList = cService.getDealList();
-//		int sum = 0;
-//		for(int i = 0; i< dCardList.size(); i++) {
-//			String cNum = dCardList.get(i).getDNum();
-//			if(cNum.equals("K")) {
-//				sum += 10;
-//			}else if(cNum.equals("Q")) {
-//				sum += 10;
-//			}else if(cNum.equals("J")) {
-//				sum += 10;
-//			}else {
-//				sum += Integer.valueOf(dCardList.get(i).getDNum());
-//			}
-//		}
-//		
-//		if(sum > 21) {
-//			System.out.println("유저 승리");
-//		}else if(sum < 17){
-//			cService.addCard("deal");
-//		}
-//		
-//	}
+	public boolean socreCompare() {	
+		if(!dTurnFlag && !uTurnFlag && flag) {
+			score();
+			if(dSum > uSum && dSum < 22) {
+				cService.printCard();
+				System.out.println("딜러 승리!");
+				flag = false;;
+			}else if(dSum < uSum && uSum < 22) {
+				cService.printCard();
+				System.out.println("유저 승리!");
+				flag = false;;
+			}else {
+				cService.printCard();
+				System.out.println("무승부!");
+				flag = false;;
+			}
+		}
+		
+		return flag;
+	}
 }
