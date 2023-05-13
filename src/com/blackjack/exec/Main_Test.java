@@ -13,11 +13,24 @@ public class Main_Test {
 		Scanner scan 	= new Scanner(System.in);
 		boolean flag  	   = true; // 게임 플레그
 		
+		// - 카드 선택시 카드출력
+		
+		// 게임시작
+		// 카드 2장씩 분배
+		
+		//반복
+		// 딜러 점수비교
+		// 유저 점수비교
+		// 딜러 카드분배
+		// 카드출력
+		// 유저 카드선택
+		// 카드출력
+		
 		while(true) {
 			flag = rService.stratGame();
 			while(flag) {
-				rService.dealTurn();
-				rService.userTurn();
+				flag = rService.dealTurn();
+				flag = rService.userTurn();
 				flag = rService.socreCompare();
 			}
 			System.out.println("새 게임을 하시겠습니까? (Y/N)");
@@ -30,21 +43,6 @@ public class Main_Test {
 				return;
 			}
 		}
-		
-//		String text = "";
-//		while(true) {
-//			cService.printCard();
-//			System.out.println("카드를 뽑으시겠습니까? (player/뽑는다)");
-//			System.out.print(">>>");
-//			text = scan.nextLine();
-//			if(text.equals("유저/뽑는다")) {
-//				cService.addCard("user");
-//			}else if(text.equals("딜러/뽑는다")) {
-//				cService.addCard("deal");
-//			}else{
-//				continue;
-//			}
-//		}
 	}
 
 }

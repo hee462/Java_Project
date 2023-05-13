@@ -129,6 +129,9 @@ public class CardService {
    // test
    public void printCard() {
 	  score();
+	  for(int i = 0; i < 30; i++) {
+		  System.out.println();
+	  }
       System.out.printf("-------딜러 %d 점-------\n",dSum);
       for(int i = 0; i<dCardList.size(); i++) {
          System.out.print("┌────┐ ");
