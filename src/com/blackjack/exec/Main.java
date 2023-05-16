@@ -12,8 +12,7 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 
 		rService.stratGame();
-		rService.dealTrun();
-		rService.userTrun();
+		
 //		String text = "";
 //		while(true) {
 //			cService.printCard();
