@@ -121,12 +121,7 @@ public class CardService {
 	   }
    }
    
-   
-   
-   
-   
-   
-   // test
+   // 카드 출력
    public void printCard() {
 	  score();
 	  for(int i = 0; i < 30; i++) {
@@ -167,6 +162,204 @@ public class CardService {
       }
       System.out.println();
    }
+   
+   
+   public void printCard2() {
+		  score();
+		  for(int i = 0; i < 30; i++) {
+			  System.out.println();
+		  }
+	      System.out.printf("-----------딜러 %d 점-----------\n",dSum);
+	      for(int i = 0; i<dCardList.size(); i++) {
+	         System.out.print("┌─────────────┐ ");
+	      }
+	      System.out.println();
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("1")) {
+	    		  System.out.printf ("│%2s           │ ","A");
+	    	  }else {
+		    	  System.out.printf ("│%2s           │ ",dCardList.get(i).getDNum());
+	    	  }
+	      }
+	      System.out.println(); // 1
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("1")){
+	    		  System.out.printf ("│             │ ");
+	    	  }else if(dCardList.get(i).getDNum().equals("2")||dCardList.get(i).getDNum().equals("3")){
+	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+	    	  }
+	      }
+	      System.out.println(); //2
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("7") || dCardList.get(i).getDNum().equals("10") ||
+	    		 dCardList.get(i).getDNum().equals("J") || dCardList.get(i).getDNum().equals("Q") ||
+	    		 dCardList.get(i).getDNum().equals("K")){
+	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println(); //3
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("8")  || dCardList.get(i).getDNum().equals("9") || 
+	    		 dCardList.get(i).getDNum().equals("10") || dCardList.get(i).getDNum().equals("J") || 
+	    		 dCardList.get(i).getDNum().equals("Q")  || dCardList.get(i).getDNum().equals("K")){
+	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println(); //4
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("1") || dCardList.get(i).getDNum().equals("3") ||
+	    		 dCardList.get(i).getDNum().equals("5") || dCardList.get(i).getDNum().equals("9")){
+	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	    	  }else if(dCardList.get(i).getDNum().equals("6")||dCardList.get(i).getDNum().equals("7")){
+	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println(); //5 
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("8")  || dCardList.get(i).getDNum().equals("9") || 
+	    	     dCardList.get(i).getDNum().equals("10") || dCardList.get(i).getDNum().equals("J") || 
+	    		 dCardList.get(i).getDNum().equals("Q")  || dCardList.get(i).getDNum().equals("K")){
+	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println();//6
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("10") || dCardList.get(i).getDNum().equals("J") || 
+	    		 dCardList.get(i).getDNum().equals("Q")  || dCardList.get(i).getDNum().equals("K")){
+	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println();//7
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("1")) {
+ 	    		  System.out.printf ("│             │ ");
+	    	  }else if(dCardList.get(i).getDNum().equals("2") || dCardList.get(i).getDNum().equals("3")){
+	 	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	 	      }else{
+ 	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+ 	    	  }
+	      }
+	      System.out.println();
+	      for(int i = 0; i<dCardList.size(); i++) {
+	    	  if(dCardList.get(i).getDNum().equals("1")) {
+	    		  System.out.printf ("│           %-2s│ ","A");
+	    	  }else {
+		    	  System.out.printf ("│           %-2s│ ",dCardList.get(i).getDNum());
+	    	  }
+	      }
+	      System.out.println();
+	      for(int i = 0; i<dCardList.size(); i++) {
+	         System.out.print("└─────────────┘ ");
+	      }
+	      System.out.println();
+	      System.out.printf("-----------유저 %d 점-----------\n",uSum);
+	      for(int i = 0; i<uCardList.size(); i++) {
+	         System.out.print("┌─────────────┐ ");
+	      }
+	      System.out.println();
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("1")) {
+	    		  System.out.printf ("│%2s           │ ","A");
+	    	  }else {
+		    	  System.out.printf ("│%2s           │ ",uCardList.get(i).getDNum());
+	    	  }
+	      }
+	      System.out.println(); // 1
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("1")){
+	    		  System.out.printf ("│             │ ");
+	    	  }else if(uCardList.get(i).getDNum().equals("2")||uCardList.get(i).getDNum().equals("3")){
+	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+	    	  }
+	      }
+	      System.out.println(); //2
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("7") || uCardList.get(i).getDNum().equals("10") ||
+	    		 uCardList.get(i).getDNum().equals("J") || uCardList.get(i).getDNum().equals("Q") ||
+	    		 uCardList.get(i).getDNum().equals("K")){
+	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println(); //3
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("8")  || uCardList.get(i).getDNum().equals("9") || 
+	    		 uCardList.get(i).getDNum().equals("10") || uCardList.get(i).getDNum().equals("J") || 
+	    		 uCardList.get(i).getDNum().equals("Q")  || uCardList.get(i).getDNum().equals("K")){
+	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println(); //4
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("1") || uCardList.get(i).getDNum().equals("3") ||
+	    		 uCardList.get(i).getDNum().equals("5") || uCardList.get(i).getDNum().equals("9")){
+	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	    	  }else if(uCardList.get(i).getDNum().equals("6")||uCardList.get(i).getDNum().equals("7")){
+	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println(); //5 
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("8")  || uCardList.get(i).getDNum().equals("9") || 
+	    	     uCardList.get(i).getDNum().equals("10") || uCardList.get(i).getDNum().equals("J") || 
+	    		 uCardList.get(i).getDNum().equals("Q")  || uCardList.get(i).getDNum().equals("K")){
+	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println();//6
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("10") || uCardList.get(i).getDNum().equals("J") || 
+	    		 uCardList.get(i).getDNum().equals("Q")  || uCardList.get(i).getDNum().equals("K")){
+	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	    	  }else {
+	    		  System.out.printf ("│             │ ");
+	    	  }
+	      }
+	      System.out.println();//7
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("1")) {
+ 	    		  System.out.printf ("│             │ ");
+	    	  }else if(uCardList.get(i).getDNum().equals("2") || uCardList.get(i).getDNum().equals("3")){
+	 	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	 	      }else{
+ 	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+ 	    	  }
+	      }
+	      System.out.println();
+	      for(int i = 0; i<uCardList.size(); i++) {
+	    	  if(uCardList.get(i).getDNum().equals("1")) {
+	    		  System.out.printf ("│           %-2s│ ","A");
+	    	  }else {
+		    	  System.out.printf ("│           %-2s│ ",uCardList.get(i).getDNum());
+	    	  }
+	      }
+	      System.out.println();
+	      for(int i = 0; i<uCardList.size(); i++) {
+	         System.out.print("└─────────────┘ ");
+	      }
+	      System.out.println();
+	   }
 
    
 	

@@ -36,7 +36,7 @@ public class RuleService_test {
 			cService.addCard("deal");
 			cService.addCard("user");
 		}
-		cService.printCard();
+		cService.printCard2();
 		score();
 		return flag;
 	}
@@ -46,7 +46,7 @@ public class RuleService_test {
 		if(flag && dTurnFlag) {
 			if(dSum < 17){
 				cService.addCard("deal");
-				cService.printCard();
+				cService.printCard2();
 				dSocreOver();
 			}else {
 				dTurnFlag = false;
@@ -65,7 +65,7 @@ public class RuleService_test {
 			if(uStr.equals("Y")) {
 				// 뽑는다 선택시 유저카드 한장 추가
 				cService.addCard("user");
-				cService.printCard();
+				cService.printCard2();
 				uSocreOver();
 			}else {
 				uTurnFlag = false;
@@ -138,15 +138,15 @@ public class RuleService_test {
 		if(!uTurnFlag && !dTurnFlag) {
 			score();
 			if(dSum > uSum && dSum < 22) {
-				cService.printCard();
+				cService.printCard2();
 				System.out.println("딜러 승리!");
 				flag = false;;
 			}else if(dSum < uSum && uSum < 22) {
-				cService.printCard();
+				cService.printCard2();
 				System.out.println("유저 승리!");
 				flag = false;;
 			}else {
-				cService.printCard();
+				cService.printCard2();
 				System.out.println("무승부!");
 				flag = false;;
 			}
@@ -170,7 +170,7 @@ public class RuleService_test {
 //			// 21점이거나 넘어갔을경우 게임 끝
 //			return flag;
 //		}
-//		cService.printCard();
+//		cService.printCard2();
 //		
 //		
 //		//유저 차례 진행
