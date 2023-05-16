@@ -36,21 +36,24 @@ public class RuleService {
 	}
 
 	public void dealTrun() {
+		score();
+		System.out.println("딜러 : "+dSum);
 		if (dSum < 17) {
 			cService.addCard("deal");
 			cService.printCard();
 		} else {
-			System.out.println("카드를 더이상 뽑지 못합니다");
+			System.out.println("딜러는 카드를 더이상 뽑지 못합니다");
 			return;
 		}
-
 	}
 
 	public void userTrun() {
+		score();
+		System.out.println("유저 : "+uSum);
 		Scanner scan = new Scanner(System.in);
-		if (uSum < 21) {
-			System.out.println("Game over");
-		}
+//		if (uSum < 21) {
+//			System.out.println("Game over");
+//		}
 		System.out.println("카드를 출력하시겠습니까? (Y/N)");
 		System.out.print(">>>");
 		try {

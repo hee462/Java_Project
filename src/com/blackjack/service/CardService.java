@@ -28,6 +28,7 @@ public class CardService {
    }
    
    public void CreateCard() {
+	      cList = new ArrayList<>();
       dCardList = new ArrayList<>();
       uCardList = new ArrayList<>();
       String pattern = "♠";
@@ -61,6 +62,40 @@ public class CardService {
       }
    }
    
+   public List<CardDto> addCardList() {
+	   dCardList = new ArrayList<>();
+	   uCardList = new ArrayList<>();
+	   String pattern = "♠";
+	   // 카드뭉치 생성
+	   for(int pNum = 0; pNum< 4; pNum++) {
+	      // 카드문양 생성
+	      if(pNum == 0) {
+	         pattern = "♠";
+	      }else if(pNum == 1){
+	         pattern = "♣";
+	      }else if(pNum == 2){
+	         pattern = "♡";
+	      }else if(pNum == 3){
+	         pattern = "◇";
+	      }
+	      // 카드번호 생성
+	      for(int i = 0; i< 13; i++){
+	         CardDto cDto = new CardDto();
+	         cDto.setPattern(pattern);
+	         if(i+1 == 11) {
+	            cDto.setDNum("J");
+	         }else if(i+1 == 12){
+	            cDto.setDNum("Q");
+	         }else if(i+1 == 13){
+	            cDto.setDNum("K");
+	         }else {
+	            cDto.setDNum((i+1)+"");
+	         }
+	         cList.add(cDto);
+	      }
+	   }
+	   return cList;
+	}
    // player 유저와 딜러 구분하기 위한 변수
    public void addCard(String player) {
       tempCardList = new ArrayList<>();
@@ -88,6 +123,10 @@ public class CardService {
    // 유저카드 리스트 가져오기   
    public List<CardDto> getUserList(){
 	   return uCardList;
+   }
+   // 전체카드 리스트 가져오기   
+   public List<CardDto> getCardList(){
+	   return cList;
    }
    
    //카드 합계 계산
@@ -124,9 +163,9 @@ public class CardService {
    // 카드 출력
    public void printCard() {
 	  score();
-	  for(int i = 0; i < 30; i++) {
-		  System.out.println();
-	  }
+//	  for(int i = 0; i < 30; i++) {
+//		  System.out.println();
+//	  }
       System.out.printf("-------딜러 %d 점-------\n",dSum);
       for(int i = 0; i<dCardList.size(); i++) {
          System.out.print("┌────┐ ");
@@ -166,9 +205,11 @@ public class CardService {
    
    public void printCard2() {
 		  score();
-		  for(int i = 0; i < 30; i++) {
-			  System.out.println();
-		  }
+//		  for(int i = 0; i < 30; i++) {
+//			  System.out.println();
+//		  }
+		  System.out.print("\033[H\033[2J");
+	      System.out.flush();
 	      System.out.printf("-----------딜러 %d 점-----------\n",dSum);
 	      for(int i = 0; i<dCardList.size(); i++) {
 	         System.out.print("┌─────────────┐ ");
@@ -275,7 +316,7 @@ public class CardService {
 	    	  }else {
 		    	  System.out.printf ("│%2s           │ ",uCardList.get(i).getDNum());
 	    	  }
-	      }
+	      } 
 	      System.out.println(); // 1
 	      for(int i = 0; i<uCardList.size(); i++) {
 	    	  if(uCardList.get(i).getDNum().equals("1")){

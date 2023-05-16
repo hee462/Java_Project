@@ -26,20 +26,35 @@ public class Main_Test {
 		// 유저 카드선택
 		// 카드출력
 		
+		String text = "1";
 		while(true) {
-			flag = rService.stratGame();
+			if(text.equals("1")) {
+				flag = rService.newStratGame();
+			}else if(text.equals("3")) {
+				flag = rService.stratGame();
+			}
+//			flag = rService.stratGame();
 			while(flag) {
 				flag = rService.dealTurn();
 				flag = rService.userTurn();
 				flag = rService.socreCompare();
 			}
-			System.out.println("새 게임을 하시겠습니까? (Y/N)");
+//			System.out.println("새게임(NEW) / 카드추가(ADD)");
+//			System.out.println("다음 게임을 하시겠습니까?");
+			System.out.println("┌─────────────────┬─────────────────┐");
+			System.out.println("│ 1.새 게임       │ 2.카드추가      │");
+			System.out.println("├─────────────────┼─────────────────┤");
+			System.out.println("│ 3.다음게임      │ 4.그만하기      │");
+			System.out.println("└─────────────────┴─────────────────┘");
 			System.out.print(">>>");
-			String text = scan.nextLine();
-			if(text.equals("Y")) {
+			text = scan.nextLine();
+			if(text.equals("1") || text.equals("3")) {
 				flag = true;
 				continue;
-			}else {
+			}else if(text.equals("2")) {
+				rService.addCardList();
+				rService.printScore();
+			}else if(text.toUpperCase().equals("4")){
 				return;
 			}
 		}

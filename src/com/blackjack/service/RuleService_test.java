@@ -8,10 +8,15 @@ import com.blackjack.models.CardDto;
 
 public class RuleService_test {
 	private CardService cService;
+    private List<CardDto> cList;
     private List<CardDto> dCardList;
     private List<CardDto> uCardList;
     private int dSum = 0;
     private int uSum = 0;
+    //승패 점수
+    private int dWin = 0;
+    private int uWin = 0;
+    private int draw = 0;
     String uStr = "";
     private boolean flag;
     private boolean dTurnFlag;
@@ -19,33 +24,50 @@ public class RuleService_test {
 	   
 
 	public RuleService_test() {
-		cService = new CardService();
+		cService  = new CardService();
+		cList     = new ArrayList<>();
 		dCardList = new ArrayList<>();
 		uCardList = new ArrayList<>();
-		flag = true;
+		flag      = true;
 		dTurnFlag = true; // 딜러 턴 플레그
 		uTurnFlag = true; // 유저 턴 플레그
 	}
-	//게임 시작할때 1회 실행
+	//게임 시작
 	public boolean stratGame() {
 		flag = true;
 		dTurnFlag = true;
 		uTurnFlag = true;
-		cService.CreateCard();
+//	    dWin = 0;
+//	    uWin = 0;
+//	    draw = 0;
+//		cService.CreateCard();
 		for( int i =0 ; i < 2 ; i++) {
 			cService.addCard("deal");
 			cService.addCard("user");
 		}
+		printScore();
 		cService.printCard2();
 		score();
 		return flag;
 	}
+	//게임 시작할때 1회 실행
+	public boolean newStratGame() {
+	    dWin = 0;
+	    uWin = 0;
+	    draw = 0;
+		cService.CreateCard();
+		return stratGame();
+	}
 	
+	public void addCardList() {
+		cService.addCardList();
+	}
 	
 	public boolean dealTurn() {
 		if(flag && dTurnFlag) {
 			if(dSum < 17){
 				cService.addCard("deal");
+				printScore();
 				cService.printCard2();
 				dSocreOver();
 			}else {
@@ -62,9 +84,10 @@ public class RuleService_test {
 			System.out.println("카드를 뽑으시겠습니까? (Y/N)");
 			System.out.print(">>>");
 			uStr = scan.nextLine();
-			if(uStr.equals("Y")) {
+			if(uStr.toUpperCase().equals("Y")) {
 				// 뽑는다 선택시 유저카드 한장 추가
 				cService.addCard("user");
+				printScore();
 				cService.printCard2();
 				uSocreOver();
 			}else {
@@ -78,6 +101,7 @@ public class RuleService_test {
 	public void score() {
 		dCardList = cService.getDealList();
 		uCardList = cService.getUserList();
+		cList     = cService.getCardList();
 		dSum = 0;
 		for(int i = 0; i< dCardList.size(); i++) {
 			String cNum = dCardList.get(i).getDNum();
@@ -110,9 +134,11 @@ public class RuleService_test {
 		score();
 		if(dSum == 21) {
 			System.out.println("딜러 승리!");
+			dWin++;
 			flag = false;
 		}else if(dSum > 21) {
 			System.out.println("유저 승리!");
+			uWin++;
 			flag = false;
 		}else {
 			flag = true;
@@ -123,9 +149,11 @@ public class RuleService_test {
 		score();
 		if(uSum == 21) {
 			System.out.println("유저 승리!");
+			uWin++;
 			flag = false;
 		}else if(uSum > 21) {
 			System.out.println("딜러 승리!");
+			dWin++;
 			flag = false;
 		}else {
 			flag = true;
@@ -138,20 +166,35 @@ public class RuleService_test {
 		if(!uTurnFlag && !dTurnFlag) {
 			score();
 			if(dSum > uSum && dSum < 22) {
+				printScore();
 				cService.printCard2();
 				System.out.println("딜러 승리!");
+				dWin++;
 				flag = false;;
 			}else if(dSum < uSum && uSum < 22) {
+				printScore();
 				cService.printCard2();
 				System.out.println("유저 승리!");
+				uWin++;
 				flag = false;;
 			}else {
+				printScore();
 				cService.printCard2();
 				System.out.println("무승부!");
+				draw++;
 				flag = false;;
 			}
 		}
 		return flag;
+	}
+	
+	public void printScore(){
+		System.out.println("┌─────────────────┬─────────────────┬─────────────────┬───────────────────┐");
+		System.out.printf ("│   딜러 : %2d승   │   유저 : %2d승   │   무승부 : %2d   │  남은카드 : %3d장 │\n",dWin,uWin,draw,cList.size());
+		System.out.println("└─────────────────┴─────────────────┴─────────────────┴───────────────────┘");
+//		System.out.println("┌─────────────────┬─────────────────┬─────────────────┐");
+//		System.out.printf ("│   딜러 : %2d승   │   유저 : %2d승   │   무승부 : %2d   │\n",dWin,uWin,draw);
+//		System.out.println("└─────────────────┴─────────────────┴─────────────────┘");
 	}
 	
 	
