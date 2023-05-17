@@ -175,4 +175,3 @@ public class RuleService {
 		return flag;
 	}
 }
-
