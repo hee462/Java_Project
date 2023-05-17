@@ -13,6 +13,7 @@ public class CardDto {
     	this.pattern = pattern;
     	this.dNum = dNum;
     	
+    	
     }
     
 	public String getPattern() {
