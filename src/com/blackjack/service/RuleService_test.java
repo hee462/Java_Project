@@ -163,7 +163,7 @@ public class RuleService_test {
 	}
 	
 	public boolean socreCompare() {	
-		if(!uTurnFlag && !dTurnFlag) {
+		if(!uTurnFlag) {
 			score();
 			if(dSum > uSum && dSum < 22) {
 				printScore();

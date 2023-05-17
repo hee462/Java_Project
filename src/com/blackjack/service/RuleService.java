@@ -46,7 +46,6 @@ public class RuleService {
 
 	}
 
-<<<<<<< HEAD
 //딜러 턴 카드 값 비교 및 카드 받기
 	public boolean dealTurn() {
 		// dTurn 인지와 flag 값이 트루 인지 확인
@@ -72,27 +71,6 @@ public class RuleService {
 			Scanner scan = new Scanner(System.in);
 			System.out.println("카드를 뽑으시겠습니까? (Y/N)");
 			System.out.print(">>>");
-=======
-	public void dealTrun() {
-		if (dSum < 17) {
-			cService.addCard("deal");
-			cService.printCard();
-		} else {
-			System.out.println("카드를 더이상 뽑지 못합니다");
-			return;
-		}
-
-	}
-
-	public void userTrun() {
-		Scanner scan = new Scanner(System.in);
-		if (uSum < 21) {
-			System.out.println("Game over");
-		}
-		System.out.println("카드를 출력하시겠습니까? (Y/N)");
-		System.out.print(">>>");
-		try {
->>>>>>> cc8cca8ca8353ecb1484d46db47fdc3b56fc670f
 			uStr = scan.nextLine();
 			if (uStr.equals("Y")) {
 				cService.addCard("user");
