@@ -21,8 +21,7 @@ public class Main {
 //		rService.userTurn();
 //		rService.socreCompare();
 
-<<<<<<< HEAD
-=======
+
 		rService.stratGame();
 		
 //		String text = "";
