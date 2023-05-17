@@ -27,6 +27,11 @@ public class CardService {
       uCardList = new ArrayList<>();
    }
    
+   public void playerListReset() {
+      dCardList = new ArrayList<>();
+      uCardList = new ArrayList<>();
+   }
+   
    public void CreateCard() {
 	      cList = new ArrayList<>();
       dCardList = new ArrayList<>();

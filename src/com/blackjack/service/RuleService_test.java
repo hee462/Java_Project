@@ -40,7 +40,7 @@ public class RuleService_test {
 //	    dWin = 0;
 //	    uWin = 0;
 //	    draw = 0;
-//		cService.CreateCard();
+		cService.playerListReset();
 		for( int i =0 ; i < 2 ; i++) {
 			cService.addCard("deal");
 			cService.addCard("user");
