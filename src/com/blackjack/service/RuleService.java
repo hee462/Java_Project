@@ -40,7 +40,7 @@ public class RuleService {
 			cService.addCard("user");
 		}
 		// 카드 출력method
-		cService.printCard();
+		cService.printCard2();
 		// boolean 값으로 flag리턴 ==>true 
 		return flag;
 
@@ -53,7 +53,7 @@ public class RuleService {
 			// dsum 이 17이하면 카드 추가
 			if (dSum < 17) {
 				cService.addCard("deal");
-				cService.printCard();
+				cService.printCard2();
 				// 딜러 카드 합산 값 비교 후 프린트 값 출력
 				 dSocreOver();
 
@@ -74,11 +74,12 @@ public class RuleService {
 			uStr = scan.nextLine();
 			if (uStr.equals("Y")) {
 				cService.addCard("user");
-				cService.printCard();
-
-			} else {
+				cService.printCard2();
+				uScoreOver();
 				
+			} else if(uStr.equals("N")) {
 				uTurnFlag = false;
+				socreCompare();
 			}
 		}
 		return flag;
@@ -137,11 +138,11 @@ public class RuleService {
 
 		score();
 		if (uSum == 21) {
-			System.out.println("플레이어  승리");
+			System.out.println("플레이어 승리");
 
 			flag = false;
 		} else if (uSum > 21) {
-			System.out.println("딜러  승리");
+			System.out.println("딜러 승리");
 			flag = false;
 		} else {
 			flag = true;
@@ -152,21 +153,21 @@ public class RuleService {
 
 	public boolean socreCompare() {
 		// 유저 턴과 딜러턴이 아니라면
-		if (!uTurnFlag && !dTurnFlag) {
+		if (!uTurnFlag) {
 			//sum 값 비교 후 출
 			score();
 			if (dSum > uSum && dSum < 22) {
-				cService.printCard();
+				cService.printCard2();
 				System.out.println("딜러 승리");
 				
 				flag =false;
 			} else if (dSum < uSum && uSum < 22) {
-				cService.printCard();
+				cService.printCard2();
 				System.out.println("유저 승리");
 				
 				flag =false;
 			} else {
-				cService.printCard();
+				cService.printCard2();
 				System.out.println("무승부");
 				
 				flag =false;
