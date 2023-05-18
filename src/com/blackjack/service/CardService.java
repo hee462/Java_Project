@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.blackjack.models.CardDto;
+import com.blackjack.utils.AnsiConsol;
 
 public class CardService {
    // 카드 뭉치
@@ -45,9 +46,9 @@ public class CardService {
          }else if(pNum == 1){
             pattern = "♣";
          }else if(pNum == 2){
-            pattern = "♡";
+            pattern = "♥";
          }else if(pNum == 3){
-            pattern = "◇";
+            pattern = "◆";
          }
          // 카드번호 생성
          for(int i = 0; i< 13; i++){
@@ -79,9 +80,9 @@ public class CardService {
 	      }else if(pNum == 1){
 	         pattern = "♣";
 	      }else if(pNum == 2){
-	         pattern = "♡";
+	         pattern = "♥";
 	      }else if(pNum == 3){
-	         pattern = "◇";
+	         pattern = "◆";
 	      }
 	      // 카드번호 생성
 	      for(int i = 0; i< 13; i++){
@@ -177,7 +178,7 @@ public class CardService {
       }
       System.out.println();
       for(int i = 0; i<dCardList.size(); i++) {
-    	  System.out.printf ("│ %1s  │ ",dCardList.get(i).getPattern());
+    	  System.out.printf ("│ %1s  │ ",ansiCard(dCardList.get(i).getPattern()));
       }
       System.out.println();
       for(int i = 0; i<dCardList.size(); i++) {
@@ -207,14 +208,20 @@ public class CardService {
       System.out.println();
    }
    
-   
+   public String ansiCard(String pattern) {
+	   return(pattern == "♥" || pattern == "◆") ? " "+AnsiConsol.red+pattern+AnsiConsol.exit : pattern;
+   }
+   public String ansiCard2(String pattern,String num) {
+	   	if((pattern == "♥" || pattern == "◆")) {
+			return (num.equals("10")? "":" ")+AnsiConsol.red+num+AnsiConsol.exit;
+	   	}
+		return num;
+   }
    public void printCard2() {
 		  score();
 //		  for(int i = 0; i < 30; i++) {
 //			  System.out.println();
 //		  }
-		  System.out.print("\033[H\033[2J");
-	      System.out.flush();
 	      System.out.printf("-----------딜러 %d 점-----------\n",dSum);
 	      for(int i = 0; i<dCardList.size(); i++) {
 	         System.out.print("┌─────────────┐ ");
@@ -222,9 +229,9 @@ public class CardService {
 	      System.out.println();
 	      for(int i = 0; i<dCardList.size(); i++) {
 	    	  if(dCardList.get(i).getDNum().equals("1")) {
-	    		  System.out.printf ("│%2s           │ ","A");
+	    		  System.out.printf ("│%2s           │ ", ansiCard2(dCardList.get(i).getPattern(),"A"));
 	    	  }else {
-		    	  System.out.printf ("│%2s           │ ",dCardList.get(i).getDNum());
+		    	  System.out.printf ("│%2s           │ ",ansiCard2(dCardList.get(i).getPattern(),dCardList.get(i).getDNum()));
 	    	  }
 	      }
 	      System.out.println(); // 1
@@ -232,9 +239,9 @@ public class CardService {
 	    	  if(dCardList.get(i).getDNum().equals("1")){
 	    		  System.out.printf ("│             │ ");
 	    	  }else if(dCardList.get(i).getDNum().equals("2")||dCardList.get(i).getDNum().equals("3")){
-	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	    		  System.out.printf ("│     %2s      │ ",ansiCard(dCardList.get(i).getPattern()));
 	    	  }else {
-	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(dCardList.get(i).getPattern()),ansiCard(dCardList.get(i).getPattern()));
 	    	  }
 	      }
 	      System.out.println(); //2
@@ -242,7 +249,7 @@ public class CardService {
 	    	  if(dCardList.get(i).getDNum().equals("7") || dCardList.get(i).getDNum().equals("10") ||
 	    		 dCardList.get(i).getDNum().equals("J") || dCardList.get(i).getDNum().equals("Q") ||
 	    		 dCardList.get(i).getDNum().equals("K")){
-	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	    		  System.out.printf ("│     %2s      │ ",ansiCard(dCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -252,7 +259,7 @@ public class CardService {
 	    	  if(dCardList.get(i).getDNum().equals("8")  || dCardList.get(i).getDNum().equals("9") || 
 	    		 dCardList.get(i).getDNum().equals("10") || dCardList.get(i).getDNum().equals("J") || 
 	    		 dCardList.get(i).getDNum().equals("Q")  || dCardList.get(i).getDNum().equals("K")){
-	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(dCardList.get(i).getPattern()),ansiCard(dCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -261,9 +268,9 @@ public class CardService {
 	      for(int i = 0; i<dCardList.size(); i++) {
 	    	  if(dCardList.get(i).getDNum().equals("1") || dCardList.get(i).getDNum().equals("3") ||
 	    		 dCardList.get(i).getDNum().equals("5") || dCardList.get(i).getDNum().equals("9")){
-	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	    		  System.out.printf ("│     %2s      │ ",ansiCard(dCardList.get(i).getPattern()));
 	    	  }else if(dCardList.get(i).getDNum().equals("6")||dCardList.get(i).getDNum().equals("7")){
-	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(dCardList.get(i).getPattern()),ansiCard(dCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -273,7 +280,7 @@ public class CardService {
 	    	  if(dCardList.get(i).getDNum().equals("8")  || dCardList.get(i).getDNum().equals("9") || 
 	    	     dCardList.get(i).getDNum().equals("10") || dCardList.get(i).getDNum().equals("J") || 
 	    		 dCardList.get(i).getDNum().equals("Q")  || dCardList.get(i).getDNum().equals("K")){
-	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(dCardList.get(i).getPattern()),ansiCard(dCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -282,7 +289,7 @@ public class CardService {
 	      for(int i = 0; i<dCardList.size(); i++) {
 	    	  if(dCardList.get(i).getDNum().equals("10") || dCardList.get(i).getDNum().equals("J") || 
 	    		 dCardList.get(i).getDNum().equals("Q")  || dCardList.get(i).getDNum().equals("K")){
-	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	    		  System.out.printf ("│     %2s      │ ",ansiCard(dCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -292,17 +299,17 @@ public class CardService {
 	    	  if(dCardList.get(i).getDNum().equals("1")) {
  	    		  System.out.printf ("│             │ ");
 	    	  }else if(dCardList.get(i).getDNum().equals("2") || dCardList.get(i).getDNum().equals("3")){
-	 	    		  System.out.printf ("│     %2s      │ ",dCardList.get(i).getPattern());
+	 	    		  System.out.printf ("│     %2s      │ ",ansiCard(dCardList.get(i).getPattern()));
 	 	      }else{
- 	    		  System.out.printf ("│ %2s      %2s  │ ",dCardList.get(i).getPattern(),dCardList.get(i).getPattern());
+ 	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(dCardList.get(i).getPattern()),ansiCard(dCardList.get(i).getPattern()));
  	    	  }
 	      }
 	      System.out.println();
 	      for(int i = 0; i<dCardList.size(); i++) {
 	    	  if(dCardList.get(i).getDNum().equals("1")) {
-	    		  System.out.printf ("│           %-2s│ ","A");
+	    		  System.out.printf ("│           %-2s│ ",ansiCard2(dCardList.get(i).getPattern(),"A"));
 	    	  }else {
-		    	  System.out.printf ("│           %-2s│ ",dCardList.get(i).getDNum());
+		    	  System.out.printf ("│           %-2s│ ",ansiCard2(dCardList.get(i).getPattern(),dCardList.get(i).getDNum()));
 	    	  }
 	      }
 	      System.out.println();
@@ -317,19 +324,19 @@ public class CardService {
 	      System.out.println();
 	      for(int i = 0; i<uCardList.size(); i++) {
 	    	  if(uCardList.get(i).getDNum().equals("1")) {
-	    		  System.out.printf ("│%2s           │ ","A");
+	    		  System.out.printf ("│%2s           │ ", ansiCard2(uCardList.get(i).getPattern(),"A"));
 	    	  }else {
-		    	  System.out.printf ("│%2s           │ ",uCardList.get(i).getDNum());
+		    	  System.out.printf ("│%2s           │ ",ansiCard2(uCardList.get(i).getPattern(),uCardList.get(i).getDNum()));
 	    	  }
-	      } 
+	      }
 	      System.out.println(); // 1
 	      for(int i = 0; i<uCardList.size(); i++) {
 	    	  if(uCardList.get(i).getDNum().equals("1")){
 	    		  System.out.printf ("│             │ ");
 	    	  }else if(uCardList.get(i).getDNum().equals("2")||uCardList.get(i).getDNum().equals("3")){
-	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	    		  System.out.printf ("│     %2s      │ ",ansiCard(uCardList.get(i).getPattern()));
 	    	  }else {
-	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(uCardList.get(i).getPattern()),ansiCard(uCardList.get(i).getPattern()));
 	    	  }
 	      }
 	      System.out.println(); //2
@@ -337,7 +344,7 @@ public class CardService {
 	    	  if(uCardList.get(i).getDNum().equals("7") || uCardList.get(i).getDNum().equals("10") ||
 	    		 uCardList.get(i).getDNum().equals("J") || uCardList.get(i).getDNum().equals("Q") ||
 	    		 uCardList.get(i).getDNum().equals("K")){
-	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	    		  System.out.printf ("│     %2s      │ ",ansiCard(uCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -347,7 +354,7 @@ public class CardService {
 	    	  if(uCardList.get(i).getDNum().equals("8")  || uCardList.get(i).getDNum().equals("9") || 
 	    		 uCardList.get(i).getDNum().equals("10") || uCardList.get(i).getDNum().equals("J") || 
 	    		 uCardList.get(i).getDNum().equals("Q")  || uCardList.get(i).getDNum().equals("K")){
-	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(uCardList.get(i).getPattern()),ansiCard(uCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -356,9 +363,9 @@ public class CardService {
 	      for(int i = 0; i<uCardList.size(); i++) {
 	    	  if(uCardList.get(i).getDNum().equals("1") || uCardList.get(i).getDNum().equals("3") ||
 	    		 uCardList.get(i).getDNum().equals("5") || uCardList.get(i).getDNum().equals("9")){
-	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	    		  System.out.printf ("│     %2s      │ ",ansiCard(uCardList.get(i).getPattern()));
 	    	  }else if(uCardList.get(i).getDNum().equals("6")||uCardList.get(i).getDNum().equals("7")){
-	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(uCardList.get(i).getPattern()),ansiCard(uCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -368,7 +375,7 @@ public class CardService {
 	    	  if(uCardList.get(i).getDNum().equals("8")  || uCardList.get(i).getDNum().equals("9") || 
 	    	     uCardList.get(i).getDNum().equals("10") || uCardList.get(i).getDNum().equals("J") || 
 	    		 uCardList.get(i).getDNum().equals("Q")  || uCardList.get(i).getDNum().equals("K")){
-	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(uCardList.get(i).getPattern()),ansiCard(uCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -377,7 +384,7 @@ public class CardService {
 	      for(int i = 0; i<uCardList.size(); i++) {
 	    	  if(uCardList.get(i).getDNum().equals("10") || uCardList.get(i).getDNum().equals("J") || 
 	    		 uCardList.get(i).getDNum().equals("Q")  || uCardList.get(i).getDNum().equals("K")){
-	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	    		  System.out.printf ("│     %2s      │ ",ansiCard(uCardList.get(i).getPattern()));
 	    	  }else {
 	    		  System.out.printf ("│             │ ");
 	    	  }
@@ -387,17 +394,17 @@ public class CardService {
 	    	  if(uCardList.get(i).getDNum().equals("1")) {
  	    		  System.out.printf ("│             │ ");
 	    	  }else if(uCardList.get(i).getDNum().equals("2") || uCardList.get(i).getDNum().equals("3")){
-	 	    		  System.out.printf ("│     %2s      │ ",uCardList.get(i).getPattern());
+	 	    		  System.out.printf ("│     %2s      │ ",ansiCard(uCardList.get(i).getPattern()));
 	 	      }else{
- 	    		  System.out.printf ("│ %2s      %2s  │ ",uCardList.get(i).getPattern(),uCardList.get(i).getPattern());
+ 	    		  System.out.printf ("│ %2s      %2s  │ ",ansiCard(uCardList.get(i).getPattern()),ansiCard(uCardList.get(i).getPattern()));
  	    	  }
 	      }
 	      System.out.println();
 	      for(int i = 0; i<uCardList.size(); i++) {
 	    	  if(uCardList.get(i).getDNum().equals("1")) {
-	    		  System.out.printf ("│           %-2s│ ","A");
+	    		  System.out.printf ("│           %-2s│ ",ansiCard2(uCardList.get(i).getPattern(),"A"));
 	    	  }else {
-		    	  System.out.printf ("│           %-2s│ ",uCardList.get(i).getDNum());
+		    	  System.out.printf ("│           %-2s│ ",ansiCard2(uCardList.get(i).getPattern(),uCardList.get(i).getDNum()));
 	    	  }
 	      }
 	      System.out.println();
