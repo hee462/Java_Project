@@ -12,10 +12,7 @@ public class CardDto {
     	super();
     	this.pattern = pattern;
     	this.dNum = dNum;
-    	
-    	
     }
-    
 	public String getPattern() {
 		return pattern;
 	}
