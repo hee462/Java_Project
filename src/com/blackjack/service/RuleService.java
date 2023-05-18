@@ -89,6 +89,7 @@ public class RuleService {
 				uSocreOver();
 			}else {
 				uTurnFlag = false;
+				socreCompare();
 			}
 		}
 		return flag;
@@ -180,6 +181,7 @@ public class RuleService {
 				System.out.println("무승부!");
 				draw++;
 				flag = false;;
+
 			}
 		}
 		return flag;
