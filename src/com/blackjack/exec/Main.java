@@ -2,8 +2,8 @@ package com.blackjack.exec;
 
 import java.util.Scanner;
 
+import com.blackjac.test.RuleService_test;
 import com.blackjack.service.CardService;
-import com.blackjack.service.RuleService_test;
 import com.blackjack.service.RuleService;
 
 public class Main {
@@ -14,7 +14,7 @@ public class Main {
 		
 		String text = "1";
 		while(true) {
-			rService.printSpace();
+//			rService.printSpace();
 			if(text.equals("1")) {
 				flag = rService.newStratGame();
 			}else if(text.equals("3")) {
@@ -23,7 +23,6 @@ public class Main {
 			while(flag) {
 				flag = rService.dealTurn();
 				flag = rService.userTurn(); 
-				flag = rService.socreCompare(); 
  			}
 			System.out.println("┌─────────────────┬─────────────────┐");
 			System.out.println("│ 1.새 게임       │ 2.카드추가      │");

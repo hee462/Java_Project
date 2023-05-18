@@ -34,9 +34,9 @@ public class RuleService {
 	}
 	//게임 시작
 	public boolean stratGame() {
-		flag = true;
-		dTurnFlag = true;
-		uTurnFlag = true;
+		flag = true; //게임진행상황
+		dTurnFlag = true; //딜러차례 끝났는지 안끝났는지 구분을 위한 변수
+		uTurnFlag = true; //유저차례 끝났는지 안끝났는지 구분을 위한 변수
 		cService.playerListReset();
 		for( int i =0 ; i < 2 ; i++) {
 			cService.addCard("deal");
@@ -168,19 +168,19 @@ public class RuleService {
 				cService.printCard2();
 				System.out.println("딜러 승리!");
 				dWin++;
-				flag = false;;
+				flag = false;
 			}else if(dSum < uSum && uSum < 22) {
 				printScore();
 				cService.printCard2();
 				System.out.println("유저 승리!");
 				uWin++;
-				flag = false;;
+				flag = false;
 			}else {
 				printScore();
 				cService.printCard2();
 				System.out.println("무승부!");
 				draw++;
-				flag = false;;
+				flag = false;
 
 			}
 		}

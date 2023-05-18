@@ -98,11 +98,6 @@ public class CardService {
 	   return cList;
 	}
    
-   public void playerListReset() {
-      dCardList = new ArrayList<>();
-      uCardList = new ArrayList<>();
-   }
-   
    public void addCard(String player) {
       tempCardList = new ArrayList<>();
       rNum = (int)(Math.random()*cList.size());
@@ -117,16 +112,20 @@ public class CardService {
       }
       cList.remove(rNum);
    }
+  
+   public void playerListReset() {
+      dCardList = new ArrayList<>();
+      uCardList = new ArrayList<>();
+   }
    
-   // 딜러카드 리스트 가져오기
    public List<CardDto> getDealList(){
 	   return dCardList;
-   }
-   // 유저카드 리스트 가져오기   
+   }  
+   
    public List<CardDto> getUserList(){
 	   return uCardList;
-   }
-   // 전체카드 리스트 가져오기   
+   } 
+   
    public List<CardDto> getCardList(){
 	   return cList;
    }
@@ -213,11 +212,9 @@ public class CardService {
 	   	}
 		return num;
    }
+   
    public void printCard2() {
 		  score();
-//		  for(int i = 0; i < 30; i++) {
-//			  System.out.println();
-//		  }
 	      System.out.printf("-----------딜러 %d 점-----------\n",dSum);
 	      for(int i = 0; i<dCardList.size(); i++) {
 	         System.out.print("┌─────────────┐ ");

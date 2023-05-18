@@ -1,4 +1,4 @@
-package com.blackjack.service;
+package com.blackjac.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.Scanner;
 import javax.swing.text.DefaultCaret;
 
 import com.blackjack.models.CardDto;
+import com.blackjack.service.CardService;
 
 public class RuleService_test {
 	private CardService cService;

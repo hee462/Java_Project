@@ -1,4 +1,4 @@
-package com.blackjack.exec;
+package com.blackjac.test;
 
 import java.util.ArrayList;
 import java.util.Scanner;
