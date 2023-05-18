@@ -6,7 +6,7 @@ import java.util.List;
 import com.blackjack.models.CardDto;
 import com.blackjack.utils.AnsiConsol;
 
-public class CardService {
+public class CardService_test {
    // 카드 뭉치
    private List<CardDto> cList;
    // 딜러 카드
@@ -22,7 +22,7 @@ public class CardService {
    // 유저 카드 합계
    private int uSum = 0;
    
-   public CardService(){
+   public CardService_test(){
       cList = new ArrayList<>();
       dCardList = new ArrayList<>();
       uCardList = new ArrayList<>();
@@ -103,21 +103,26 @@ public class CardService {
       uCardList = new ArrayList<>();
    }
    
+   // player 유저와 딜러 구분하기 위한 변수
    public void addCard(String player) {
       tempCardList = new ArrayList<>();
+      // 카드뭉치에서 랜덤하게 한장 뽑기
       rNum = (int)(Math.random()*cList.size());
+      // 임시 카드뭉치에 뽑힌 한장을 담기
       tempCardList.add(cList.get(rNum));
       
+      // player에 따라 player패에 카드 추가
       if(player.equals("deal")) {
          dCardList.add(tempCardList.get(0));
       }else if(player.equals("user")) {
          uCardList.add(tempCardList.get(0));
       }else {
+         // 딜러도 유저도 아닌 player가 들어올 경우
          System.err.println("ERROR");
       }
+
       cList.remove(rNum);
    }
-   
    // 딜러카드 리스트 가져오기
    public List<CardDto> getDealList(){
 	   return dCardList;

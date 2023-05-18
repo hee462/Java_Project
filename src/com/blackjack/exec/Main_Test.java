@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.blackjack.service.CardService;
-import com.blackjack.service.RuleService_test;
+import com.blackjack.service.RuleService;
 
 public class Main_Test {
 	public static void main(String[] args) {
 		CardService cService = new CardService();
-		RuleService_test rService = new RuleService_test();
+		RuleService rService = new RuleService();
 		Scanner scan 	= new Scanner(System.in);
 		boolean flag  	   = true; // 게임 플레그
 		
@@ -27,6 +27,7 @@ public class Main_Test {
 		
 		String text = "1";
 		while(true) {
+			rService.printSpace();
 			if(text.equals("1")) {
 				flag = rService.newStratGame();
 			}else if(text.equals("3")) {
