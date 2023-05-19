@@ -33,7 +33,7 @@ public class RuleService {
 		uTurnFlag = true; // 유저 턴 플레그
 	}
 	//게임 시작
-	public boolean stratGame() {
+	public boolean startGame() {
 		flag = true; //게임진행상황
 		dTurnFlag = true; //딜러차례 끝났는지 안끝났는지 구분을 위한 변수
 		uTurnFlag = true; //유저차례 끝났는지 안끝났는지 구분을 위한 변수
@@ -48,12 +48,12 @@ public class RuleService {
 		return flag;
 	}
 	//게임 시작할때 1회 실행
-	public boolean newStratGame() {
+	public boolean newstartGame() {
 	    dWin = 0;
 	    uWin = 0;
 	    draw = 0;
 		cService.CreateCard();
-		return stratGame();
+		return startGame();
 	}
 	
 	public void addCardList() {
